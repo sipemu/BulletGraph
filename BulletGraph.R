@@ -1,3 +1,32 @@
+#'  gridBulletGraphH: Horizontale Bullet Graph
+#'  
+#'  @author Simon Müller
+#'  
+#'  @param bgData:  data.frame with
+#'                     measure  : label of what's being measured
+#'                     unit     : label of units of the measure
+#'                     high     : the high value for the measure
+#'                     mean     : the mean value for the measure
+#'                     low      : the low value for the measure
+#'                     target   : the target value for the measure
+#'                     value    : the actual value of the measure
+#'                     
+#'  @param nticks:  number of ticks. If single number all bullet graphs have the 
+#'                  same number of ticks, else a vector of nrow bgData is needed
+#'      
+#'  @param format:  format of the ticks. Single or vector. Actually implemented:
+#'                    s: standard (do nothing)
+#'                    k: komma (decimal point, thousands komma)
+#'                    d: point (vice verca to k)
+#'                    p: add percent
+#'                    
+#'  @param bcol:    vector of colours
+#'  
+#'  @param tcol:    colour of the target bar
+#'  
+#'  @param vcol:    colour of the vertical bar
+#'
+
 gridBulletGraphH <- function(bgData, nticks=3, format="s", bcol=c("red", "yellow", "green"), tcol="black", vcol="black", font=25, scfont=15) {
   
   # Data Prep
@@ -123,7 +152,34 @@ gridBulletGraphH <- function(bgData, nticks=3, format="s", bcol=c("red", "yellow
   }
 }
 
-
+#'  gridBulletGraphV: Vertical Bullet Graph
+#'  
+#'  @author Simon Müller
+#'  
+#'  @param bgData:  data.frame with
+#'                     measure  : label of what's being measured
+#'                     unit     : label of units of the measure
+#'                     high     : the high value for the measure
+#'                     mean     : the mean value for the measure
+#'                     low      : the low value for the measure
+#'                     target   : the target value for the measure
+#'                     value    : the actual value of the measure
+#'                     
+#'  @param nticks:  number of ticks. If single number all bullet graphs have the 
+#'                  same number of ticks, else a vector of nrow bgData is needed
+#'      
+#'  @param format:  format of the ticks. Single or vector. Actually implemented:
+#'                    s: standard (do nothing)
+#'                    k: komma (decimal point, thousands komma)
+#'                    d: point (vice verca to k)
+#'                    p: add percent
+#'                    
+#'  @param bcol:    vector of colours
+#'  
+#'  @param tcol:    colour of the target bar
+#'  
+#'  @param vcol:    colour of the vertical bar
+#'
 
 gridBulletGraphV <- function(bgData, nticks=3, format="s", bcol=c("red", "yellow", "green"), tcol="black", vcol="black", font=25, scfont=15) {
   
