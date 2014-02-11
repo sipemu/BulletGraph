@@ -11,7 +11,7 @@ ytd2005 <- data.frame(
 nticks <- c(7, 7, 7, 6, 7)
 format <- c("s", "p", "s", "k", "s")
 
-col1 <- c("#a5a7a9", "#e6e6e7", "#c5c6c8")
+col1 <- c("#a5a7a9", "#c5c6c8", "#e6e6e7")
 png("BulletGraphz_h_grey.png", width=1500, height=500)
 gridBulletGraph(ytd2005, nticks=nticks, format=format, bcol=col1)
 dev.off()
