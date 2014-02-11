@@ -1,8 +1,8 @@
-gridBulletGraph <- function(bgData, nticks=3, format="s", bcol=c("red", "green", "yellow"), tcol="black", vcol="black", font=25, scfont=15) {
+gridBulletGraphH <- function(bgData, nticks=3, format="s", bcol=c("red", "yellow", "green"), tcol="black", vcol="black", font=25, scfont=15) {
   
   # Data Prep
   n <- nrow(bgData)
-  nam <- c("high", "mean", "low", "target", "value")
+  nam <- c("low", "mean", "high", "target", "value")
   datMat <- as.matrix(bgData[, nam])
   
   # Nticks/Format Prep
@@ -37,24 +37,24 @@ gridBulletGraph <- function(bgData, nticks=3, format="s", bcol=c("red", "green",
     
     vp <- viewport(layout.pos.row = 2, 
                    layout.pos.col = 1, 
-                   xscale         = c(0, datMat[i, 1]))
+                   xscale         = c(0, datMat[i, 3]))
     pushViewport(vp)
     
     # x-Axis Labels
     # Formatierung Label
     if (format[i] == "s") {
-      brks <- labels <- round(seq(0, datMat[i, 1], length=nticks[i]), 0)
+      brks <- labels <- round(seq(0, datMat[i, 3], length=nticks[i]), 0)
     } else if (format[i] == "p"){
-      brks <- labels <- round(seq(0, datMat[i, 1], length=nticks[i]), 0)
+      brks <- labels <- round(seq(0, datMat[i, 3], length=nticks[i]), 0)
       labels <- paste0(labels, "%")
     } else if (format[i] == "k") {
-      brks <- labels <- round(seq(0, datMat[i, 1], length=nticks[i]), 0)
+      brks <- labels <- round(seq(0, datMat[i, 3], length=nticks[i]), 0)
       labels <- format(labels, digits=10, nsmall=0, decimal.mark=".", big.mark=",")
     }
     
     grid.xaxis(at=brks, label=labels, gp=gpar(fontsize=scfont, col="black", fontface="bold"))
     
-    grid.rect(x      = c(0, datMat[i, 1:2]) / datMat[i, 1], 
+    grid.rect(x      = c(0, datMat[i, 1:2]) / datMat[i, 3], 
               width  = unit(diff(c(0, datMat[i, 1:3])), "native"),
               y      = rep(0.5, 3), 
               height = 1, 
@@ -67,9 +67,9 @@ gridBulletGraph <- function(bgData, nticks=3, format="s", bcol=c("red", "green",
               height = 0.5, 
               gp     = gpar(fill=vcol, col=vcol), just="left")
     
-    a <- datMat[i, 1] * 0.0025
-    grid.rect(x      = datMat[i, 4] / datMat[i, 1],  
-              width  = unit(2 * a, "native"),
+    a <- datMat[i, 3] * 0.005
+    grid.rect(x      = datMat[i, 4] / datMat[i, 3],  
+              width  = unit(a, "native"),
               y      = 0.5, 
               height = 0.8, 
               gp     = gpar(fill=tcol, col=tcol), just="left")
@@ -125,11 +125,11 @@ gridBulletGraph <- function(bgData, nticks=3, format="s", bcol=c("red", "green",
 
 
 
-gridBulletGraphV <- function(bgData, nticks=3, format="s", bcol=c("red", "green", "yellow"), tcol="black", vcol="black", font=25, scfont=15) {
+gridBulletGraphV <- function(bgData, nticks=3, format="s", bcol=c("red", "yellow", "green"), tcol="black", vcol="black", font=25, scfont=15) {
   
   # Data Prep
   n <- nrow(bgData)
-  nam <- c("high", "mean", "low", "target", "value")
+  nam <- c("low", "mean", "high", "target", "value")
   datMat <- as.matrix(bgData[, nam])
   
   # Nticks/Format Prep
@@ -164,24 +164,24 @@ gridBulletGraphV <- function(bgData, nticks=3, format="s", bcol=c("red", "green"
     
     vp <- viewport(layout.pos.row = 1, 
                    layout.pos.col = 2, 
-                   yscale         = c(0, datMat[i, 1]))
+                   yscale         = c(0, datMat[i, 3]))
     pushViewport(vp)
     
     # x-Axis Labels
     # Formatierung Label
     if (format[i] == "s") {
-      brks <- labels <- round(seq(0, datMat[i, 1], length=nticks[i]), 0)
+      brks <- labels <- round(seq(0, datMat[i, 3], length=nticks[i]), 0)
     } else if (format[i] == "p"){
-      brks <- labels <- round(seq(0, datMat[i, 1], length=nticks[i]), 0)
+      brks <- labels <- round(seq(0, datMat[i, 3], length=nticks[i]), 0)
       labels <- paste0(labels, "%")
     } else if (format[i] == "k") {
-      brks <- labels <- round(seq(0, datMat[i, 1], length=nticks[i]), 0)
+      brks <- labels <- round(seq(0, datMat[i, 3], length=nticks[i]), 0)
       labels <- format(labels, digits=10, nsmall=0, decimal.mark=".", big.mark=",")
     }
     
     grid.yaxis(at=brks, label=labels, gp=gpar(fontsize=scfont, col="black", fontface="bold"))
     
-    grid.rect(y      = c(0, datMat[i, 1:2]) / datMat[i, 1], 
+    grid.rect(y      = c(0, datMat[i, 1:2]) / datMat[i, 3], 
               height = unit(diff(c(0, datMat[i, 1:3])), "native"),
               x      = rep(0.5, 3), 
               width  = 1, 
@@ -194,9 +194,9 @@ gridBulletGraphV <- function(bgData, nticks=3, format="s", bcol=c("red", "green"
               width  = 0.5, 
               gp     = gpar(fill=vcol, col=vcol), just="bottom")
     
-    a <- datMat[i, 1] * 0.0025
-    grid.rect(y      = datMat[i, 4] / datMat[i, 1],  
-              height = unit(2 * a, "native"),
+    a <- datMat[i, 1] * 0.01
+    grid.rect(y      = datMat[i, 4] / datMat[i, 3],  
+              height = unit(a, "native"),
               x      = 0.5, 
               width  = 0.8, 
               gp     = gpar(fill=tcol, col=tcol), just="bottom")
