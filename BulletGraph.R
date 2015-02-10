@@ -145,7 +145,7 @@ gridBulletGraphH <- function(bgData, nticks=3, format="s", bcol=c("red", "yellow
     pushViewport(vp)
     grid.text(label = bgData$units[i],
               just  = "right", 
-              gp    = gpar(fontsize=font, col="black"), 
+              gp    = gpar(fontsize=scfont, col="black"), 
               x     = .9,
               y     = .5)
     upViewport(n=5)
@@ -299,7 +299,7 @@ gridBulletGraphV <- function(bgData, nticks=3, format="s", bcol=c("red", "yellow
     pushViewport(vp)
     grid.text(label = bgData$units[i],
               just  = "bottom", 
-              gp    = gpar(fontsize=font, col="black"), 
+              gp    = gpar(fontsize=scfont, col="black"), 
               x     = .5,
               y     = .5)
     upViewport(n=5)
